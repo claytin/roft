@@ -23,7 +23,7 @@ class interface(threading.Thread):
 		curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_BLACK)
 
 		#header bar stuff
-		self.headerBar = curses.newwin(10, stdscr.getmaxyx()[1], 0, 0)
+		self.headerBar = curses.newwin(5, stdscr.getmaxyx()[1], 0, 0)
 		self.drawHeader(self.headerBar)
 
 		while True:
@@ -40,14 +40,14 @@ class interface(threading.Thread):
 		h = window.getmaxyx()[0]
 
 		#tmp data
-		subs = ["all", "linux", "unixporn", "programmerhumor"]
+		subs = ["subreddit1", "subreddit2", "subbreddit3", "subredditr4"]
 		cursub = 0
 
-		logins = ["fucko"]
+		logins = ["login1", "login2", "login3"]
 		curlogin = 0
 
 		window.clear()
-		window.box(0, 0)
+		#window.box(0, 0)
 
 		#draw bottom line
 		bottomBar = ""
@@ -56,21 +56,31 @@ class interface(threading.Thread):
 		window.move(h - 2, 0)
 		window.addstr(bottomBar)
 
-		#left align
+		#left align --
 		#draw subs
 		pos = 1
 		for sub in range(len(subs)):
 			pos = self.drawTab(window, pos, h - 2, (sub == cursub), subs[sub])
 			pos += 1
 
-		#right align
+		#-- right align
 		#draw search box
-		drawTab(window, 
+		self.drawTab(window, w - 22, h - 2, False, "Search...", 20)
+
 		#draw logins
+		pos = w - 22 - 2
+		#self.drawTab(window, pos, h - 2, False, logins[revlog])
+		for login in range(len(logins)):
+			revlog = len(logins) - login - 1
+			pos = pos - len(logins[revlog]) - 2
+			self.drawTab(window, pos, h - 2, (revlog == curlogin), logins[revlog])
 
 		window.refresh()
-	def drawTab(self, window, x, y, selected, string):
+	def drawTab(self, window, x, y, selected, string, w = False):
 		pos = x
+		if w == False:
+			w = len(string)
+
 		if selected:
 			#left side
 			window.move(y, pos)
@@ -83,13 +93,13 @@ class interface(threading.Thread):
 			#middle
 			window.move(y - 1, pos + 1)
 			window.addstr(string)
-			for part in range(len(string)):
+			for part in range(w):
 				window.move(y - 2, pos + part + 1)
 				window.addch("━")
 				window.move(y, pos + part + 1)
 				window.addch(" ")
 
-			pos += len(string) + 1
+			pos += w + 1
 
 			#right side
 			window.move(y, pos)
@@ -110,11 +120,11 @@ class interface(threading.Thread):
 			#middle
 			window.move(y - 1, pos + 1)
 			window.addstr(string)
-			for part in range(len(string)):
+			for part in range(w):
 				window.move(y - 2, pos + part + 1)
 				window.addch("─")
 
-			pos += len(string) + 1
+			pos += w + 1
 
 			#right side
 			window.move(y, pos)
