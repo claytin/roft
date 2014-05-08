@@ -62,6 +62,7 @@ class interface(threading.Thread):
 		for sub in range(len(subs)):
 			pos = self.drawTab(window, pos, h - 2, (sub == cursub), subs[sub])
 			pos += 1
+		self.drawTab(window, pos, h - 2, False, "+", roundr = True)
 
 		#-- right align
 		#draw search box
@@ -69,14 +70,16 @@ class interface(threading.Thread):
 
 		#draw logins
 		pos = w - 22 - 2
-		#self.drawTab(window, pos, h - 2, False, logins[revlog])
+		pos -= 3
+		self.drawTab(window, pos, h - 2, False, "+", roundr = True)
 		for login in range(len(logins)):
 			revlog = len(logins) - login - 1
 			pos = pos - len(logins[revlog]) - 2
 			self.drawTab(window, pos, h - 2, (revlog == curlogin), logins[revlog])
 
 		window.refresh()
-	def drawTab(self, window, x, y, selected, string, w = False):
+	def drawTab(self, window, x, y, selected, string, w = False,
+		roundr = False, roundl = False):
 		pos = x
 		if w == False:
 			w = len(string)
@@ -115,7 +118,10 @@ class interface(threading.Thread):
 			window.move(y - 1, pos)
 			window.addch("│")
 			window.move(y - 2, pos)
-			window.addch("┌")
+			if roundl:
+				window.addch("╭")
+			else:
+				window.addch("┌")
 
 			#middle
 			window.move(y - 1, pos + 1)
@@ -132,7 +138,11 @@ class interface(threading.Thread):
 			window.move(y - 1, pos)
 			window.addch("│")
 			window.move(y - 2, pos)
-			window.addch("┐")
+			if roundr:
+				window.addch("╮")
+			else:
+				window.addch("┐")
+
 		return pos
 
 ui = interface()
