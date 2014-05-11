@@ -22,6 +22,11 @@ class interface(threading.Thread):
 		#create color pairs
 		curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_BLACK)
 
+		#first load message
+		firstLoad = True
+		if firstLoad:
+			pass
+
 		#header bar stuff
 		self.headerBar = curses.newwin(5, stdscr.getmaxyx()[1], 0, 0)
 		self.drawHeader(self.headerBar)
@@ -40,10 +45,10 @@ class interface(threading.Thread):
 		h = window.getmaxyx()[0]
 
 		#tmp data
-		subs = ["subreddit1", "subreddit2", "subbreddit3", "subredditr4"]
+		subs = ["sub1", "sub2", "sub3", "sub4"]
 		cursub = 0
 
-		logins = ["login1", "login2", "login3"]
+		logins = ["log1", "log2", "log3"]
 		curlogin = 0
 
 		window.clear()
@@ -70,7 +75,7 @@ class interface(threading.Thread):
 
 		#draw logins
 		pos = w - 22 - 2
-		pos -= 3
+		pos -= 2
 		self.drawTab(window, pos, h - 2, False, "+", roundr = True)
 		for login in range(len(logins)):
 			revlog = len(logins) - login - 1
@@ -144,6 +149,14 @@ class interface(threading.Thread):
 				window.addch("┐")
 
 		return pos
+#testing praw
+#user_agent = ("test stuff... i'm just learning...")
+#reddit = praw.Reddit(user_agent=user_agent)
+
+#submissions = reddit.get_subreddit('linux').get_hot(limit=25)
+
+#for sub in submissions:
+#	print(sub)
 
 ui = interface()
 ui.start()
