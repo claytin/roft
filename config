@@ -1,0 +1,12 @@
+#piss
+
+[keys]
+#must be one character
+exit = q
+kill = Q
+move_up = k
+move_down = j
+move_left = h
+move_right = l
+upvote = a
+downvote = z
