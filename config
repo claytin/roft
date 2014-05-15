@@ -10,6 +10,7 @@ move_left = h
 move_right = l
 upvote = a
 downvote = z
+search = /
 
 [appearance]
 
@@ -54,6 +55,30 @@ tab_padding = false
 # │example││example│
 #─┘       └┴───────┴─
 thicken_selected = true
+
+#spacing between tabs, each each tab stands alone
+#with spacing:
+# ┏━━━━━━━┓┌───────┐┌───────┐
+# ┃example┃│example││example│
+#━┛       ┗┷━━━━━━━┷┷━━━━━━━┷━
+#without spacing:
+# ┏━━━━━━━┱───────┬───────┐
+# ┃example┃example│example│
+#━┛       ┗━━━━━━━┷━━━━━━━┷━
+tab_spacing = true
+
+#tab corner rounding, a few options for tab rounding (requires special characters)
+#thick lines cannot have rounding
+#left_tab_rounding              left_new_tab_rounding
+#          | right_tab_rounding       |
+#          V       V                  V
+# ┏━━━━━━━┓╭───────╮┌───────┐┌───────┐╭─╮<-right_new_tab_rounding
+# ┃example┃│example││example││example││+│
+#━┛       ┗┷━━━━━━━┷┷━━━━━━━┷┷━━━━━━━┷┷━┷━
+left_rounding = false
+right_rounding = false
+left_new_tab_rounding = false
+right_new_tab_rounding = true
 
 #yep
 use_colors = true
