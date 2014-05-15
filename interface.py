@@ -4,9 +4,9 @@ from curses import wrapper
 import threading
 
 class interface(threading.Thread):
-	def __init__(self, _ctrl):
+	def __init__(self, _event):
 		threading.Thread.__init__(self)
-		self.control = _ctrl
+		self.event = _event
 
 	def run(self):
 		wrapper(self.init)
@@ -35,7 +35,7 @@ class interface(threading.Thread):
 			stdscr.move(0, 0)
 			stdscr.addstr("key " + str(key))
 
-			self.control.event(key)
+			self.event(key)
 
 	def drawHeader(self, window):
 		#window w/h
@@ -147,3 +147,6 @@ class interface(threading.Thread):
 				window.addch("┐")
 
 		return pos
+
+	def stop(self):
+		exit()

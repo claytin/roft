@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 
-import curses
-from curses import wrapper
+#import curses
+#from curses import wrapper
 
-import threading
-import praw
+#import threading
+#import praw
 import configparser
 from os.path import expanduser
 import os.path
 
-import interface
+#import interface
 import control
 
 #key map with a few things predifined
@@ -40,6 +40,3 @@ else:
 	exit()
 
 ctrl = control.control(keymap)
-
-ui = interface.interface(ctrl)
-ui.start()
