@@ -140,9 +140,9 @@ rounding?
 rounded adders?
 ───────────────────────────────────────────────────────────────────────────────
                                                                      settings
- ┏━━━━━━━━━┓┌──────────┐┌─┐┌─╮           ┏━━━━━━━┓┌────────┐┌─╮ ┌────────────────┐
- ┃subreddit┃│subreddit2││→││+│           ┃account┃│account2││+│ │Search...       │
-━┛         ┗┷━━━━━━━━━━┷┷━┷┷━┷━━━━━━━━━━━┛       ┗┷━━━━━━━━┷┷━┷━┷━━━━━━━━━━━━━━━━┷
+ ┏━━━━━━━━━┓┌──────────┐┌─┐┌─╮         ┏━━━━━━━┓┌────────┐┌─┐┌─╮ ┌────────────────┐
+ ┃subreddit┃│subreddit2││→││+│         ┃account┃│account2││→││+│ │Search...       │
+━┛         ┗┷━━━━━━━━━━┷┷━┷┷━┷━━━━━━━━━┛       ┗┷━━━━━━━━┷┷━┷┷━┷━┷━━━━━━━━━━━━━━━━┷
    ↑    for many countries and keyboard types appropriate key maps are
 1 1024  available already, and a command like loadkeys uk might do what...
    ↓    (1026, 2)
@@ -158,3 +158,26 @@ rounded adders?
    ↑    meme's lol
 4  8
    ↓    (10000, 9992)
+
+merged tabs?
+───────────────────────────────────────────────────────────────────────────────
+                                                                     settings
+ ┏━━━━━━━━━┱──────────┬─┬─╮         ┏━━━━━━━┱────────┬─┬─╮ ┌────────────────┐
+ ┃subreddit┃subreddit2│→│+│         ┃account┃account2│→│+│ │Search...       │
+━┛         ┗━━━━━━━━━━┷━┷━┷━━━━━━━━━┛       ┗━━━━━━━━┷━┷━┷━┷━━━━━━━━━━━━━━━━┷
+   ↑    for many countries and keyboard types appropriate key maps are
+1 1024  available already, and a command like loadkeys uk might do what...
+   ↓    (1026, 2)
+
+   ↑    It occured to several scientists that charged particles, such as
+2 256   electrons or ions, could be piss.
+   ↓    (256, 0)
+
+   ↑    The
+3  64
+   ↓    (256, 0)
+
+   ↑    meme's lol
+4  8
+   ↓    (10000, 9992)
+
