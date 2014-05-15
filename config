@@ -10,3 +10,53 @@ move_left = h
 move_right = l
 upvote = a
 downvote = z
+
+[appearance]
+
+#use box characters, line drawing characters, and other special characters,
+#or just plain ascii not all terminals and fonts support this fancy characters
+#with special characters:
+# ┌───────┐
+# │example│
+#─┘       └─
+#without special characters:
+# +-------+
+# |example|
+#-+       +-
+special_characters = true
+
+#if ascii is selected (special_characters = false) then used this to select
+#which characters for drawing
+#corresponding tab parts parts:
+# daaaaaae
+# c      c
+#ab      fa
+ascii_characters = "abcdef"
+
+#pad application tabs (not the character) with surrounding whitespace
+#with padding:
+# +---------+
+# | example |
+#-+         +-
+#without padding:
+# +-------+
+# |example|
+#-+       +-
+tab_padding = false
+
+#thicken selected item, requires special characters enabled
+#thickening:
+# ┏━━━━━━━┓┌───────┐
+# ┃example┃│example│
+#━┛       ┗┷━━━━━━━┷━
+#no thickening:
+# ┌───────┐┌───────┐
+# │example││example│
+#─┘       └┴───────┴─
+thicken_selected = true
+
+#yep
+use_colors = true
+
+#customize colors:
+#piss
