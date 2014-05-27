@@ -25,6 +25,11 @@ left_new_tab_rounding = false
 right_new_tab_rounding = true
 use_colors = true
 
-#yep.. the d
-search_box_with = 30
+#initial width (also... the D)
+search_box_with = 40
+
+#width to scale down to when condensing
+search_box_med = 30
+
+#min width allowed (will hide after this)
 search_box_min = 15

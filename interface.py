@@ -88,9 +88,15 @@ class interface():
 		#if a continue arrow needs to be added
 		cont_subs = False
 		cont_logs = False
+		remove_search = False
+
+		#shorten everything down untile there is enough space
+		#order:
+		#search -> search_min -> remove log -> remove sub -> remove search ->
+		#shorten log -> shorten sub
 		while bar_total > w:
 			while bar_total > w and \
-				search_box_with > int(self.look['search_box_min']):
+				search_box_with > int(self.look['search_box_med']):
 				search_box_with -= 1
 				bar_total -= 1
 
@@ -107,6 +113,7 @@ class interface():
 				logins = logins[0: len(logins) - 1]
 			if not bar_total > w:
 				break
+
 			if len(subs) > 1 and len(subs) > len(logins):
 				if len(subs) - 1 == cursub:
 					bar_total -= len(subs[len(subs) - 2]) + tab_padding_amount
@@ -121,7 +128,18 @@ class interface():
 				cont_subs = True
 			if not bar_total > w:
 				break
+			if search_box_with > int(self.look['search_box_min']):
+				search_box_with -= 1
+				bar_total -= 1
+			if not bar_total > w:
+				break
+
 			if len(logins) <= 1 and len(subs) <= 1:
+				if not remove_search:
+					remove_search = True
+					bar_total -= int(self.look['search_box_min'])
+				if not bar_total > w:
+					break
 				if len(logins[0]) > 1 and len(logins[0]) >= len(subs[0]) / 2:
 					logins[0] = logins[0][0:-1]
 					bar_total -= 1
@@ -150,11 +168,14 @@ class interface():
 
 		#--> right align
 		#draw search box
-		self.drawTab(window, w - 2 - search_box_with, h - 2, False, "Search...",
-			search_box_with)
+		if not remove_search:
+			self.drawTab(window, w - 2 - search_box_with, h - 2, False, "Search...",
+				search_box_with)
+			pos = w - 4 - search_box_with
+		else:
+			pos = w - 2
 
 		#draw logins
-		pos = w - 4 - search_box_with
 		pos -= 2
 		self.drawTab(window, pos, h - 2, False, "+",
 			roundl = (self.look['left_new_tab_rounding'] == "true"),
