@@ -14,6 +14,7 @@ use_special_characters = true
 special_characters = ─┘│┌┐└┴
 special_characters_bold = ━┛┃┏┓┗┷
 special_characters_round = ╭╮
+special_character_cont = →
 ascii_characters = -+|+++
 tab_padding = false
 thicken_selected = true

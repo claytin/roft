@@ -101,7 +101,9 @@ class interface():
 					curlogin -= 1
 				else:
 					bar_total -= len(logins[len(logins) - 1]) + tab_padding_amount
-				cont_logs = True
+				if not cont_logs:
+					cont_logs = True
+					bar_total += 3
 				logins = logins[0: len(logins) - 1]
 			if not bar_total > w:
 				break
@@ -112,6 +114,9 @@ class interface():
 					cursub -= 1
 				else:
 					bar_total -= len(subs[len(subs) - 1]) + tab_padding_amount
+				if not cont_subs:
+					cont_subs = True
+					bar_total += 3
 				subs = subs[0: len(subs) - 1]
 				cont_subs = True
 			elif len(logins) <= 1:
@@ -123,7 +128,12 @@ class interface():
 		for sub in range(len(subs)):
 			pos = self.drawTab(window, pos, h - 2, (sub == cursub), subs[sub])
 			pos += 1
-		self.drawTab(window, pos, h - 2, False, "+",
+		if cont_subs:
+			pos = self.drawTab(window, pos, h - 2,
+				False, self.look['special_character_cont'])
+			pos += 1
+
+		pos = self.drawTab(window, pos, h - 2, False, "+",
 			roundl = (self.look['left_new_tab_rounding'] == "true"),
 			roundr = (self.look['right_new_tab_rounding'] == "true"))
 
@@ -138,6 +148,10 @@ class interface():
 		self.drawTab(window, pos, h - 2, False, "+",
 			roundl = (self.look['left_new_tab_rounding'] == "true"),
 			roundr = (self.look['right_new_tab_rounding'] == "true"))
+		if cont_logs:
+			pos -= 3
+			self.drawTab(window, pos, h - 2,
+				False, self.look['special_character_cont'])
 		for login in range(len(logins)):
 			revlog = len(logins) - login - 1
 			pos = pos - len(logins[revlog]) - 2
