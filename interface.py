@@ -119,8 +119,19 @@ class interface():
 					bar_total += 3
 				subs = subs[0: len(subs) - 1]
 				cont_subs = True
-			elif len(logins) <= 1:
+			if not bar_total > w:
 				break
+			if len(logins) <= 1 and len(subs) <= 1:
+				if len(logins[0]) > 1 and len(logins[0]) >= len(subs[0]) / 2:
+					logins[0] = logins[0][0:-1]
+					bar_total -= 1
+				if not bar_total > w:
+					break
+				if len(subs[0]) > 1 and len(subs[0]) > len(logins[0]):
+					subs[0] = subs[0][0:-1]
+					bar_total -= 1
+				if len(logins[0]) <= 1 and len(subs[0]) <= 1:
+					break
 
 		#left align <--
 		#draw subs (starting one space over)
