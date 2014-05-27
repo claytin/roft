@@ -45,14 +45,15 @@ class interface():
 		h = window.getmaxyx()[0]
 
 		#tmp data
-
 		subs = ["Lorem", "ipsum", "dolor", "sit", "amet", "consectetur",
+			"adipisicing", "elit", "sed", "do", "eiusmod", "tempor",
+			"Lorem", "ipsum", "dolor", "sit", "amet", "consectetur",
 			"adipisicing", "elit", "sed", "do", "eiusmod", "tempor"]
-		cursub = 0
+		cursub = 1
 
 		logins = ["curly", "booster", "sue", "balrog", "quote", "jack",
 			"kazuma", "king"]
-		curlogin = 0
+		curlogin = 2
 
 		window.clear()
 		#window.box(0, 0)
@@ -73,8 +74,51 @@ class interface():
 		window.move(h - 2, 0)
 		window.addstr(bottomBar)
 
+		#hide tabs when space is limited
+		number_of_spacers = 3
+		tab_padding_amount = 2
+		search_box_with = int(self.look['search_box_with'])
+
+		bar_total = search_box_with + number_of_spacers
+		for sub in subs:
+			bar_total += len(sub) + tab_padding_amount
+		for log in logins:
+			bar_total += len(sub) + tab_padding_amount
+
+		#if a continue arrow needs to be added
+		cont_subs = False
+		cont_logs = False
+		while bar_total > w:
+			while bar_total > w and \
+				search_box_with > int(self.look['search_box_min']):
+				search_box_with -= 1
+				bar_total -= 1
+
+			if len(logins) > 1 and len(logins) >= len(subs) / 2:
+				if len(logins) - 1 == curlogin:
+					bar_total -= len(logins[len(logins) - 2]) + tab_padding_amount
+					logins[curlogin - 1] = logins[curlogin]
+					curlogin -= 1
+				else:
+					bar_total -= len(logins[len(logins) - 1]) + tab_padding_amount
+				cont_logs = True
+				logins = logins[0: len(logins) - 1]
+			if not bar_total > w:
+				break
+			if len(subs) > 1 and len(subs) > len(logins):
+				if len(subs) - 1 == cursub:
+					bar_total -= len(subs[len(subs) - 2]) + tab_padding_amount
+					subs[cursub - 1] = subs[cursub]
+					cursub -= 1
+				else:
+					bar_total -= len(subs[len(subs) - 1]) + tab_padding_amount
+				subs = subs[0: len(subs) - 1]
+				cont_subs = True
+			elif len(logins) <= 1:
+				break
+
 		#left align <--
-		#draw subs
+		#draw subs (starting one space over)
 		pos = 1
 		for sub in range(len(subs)):
 			pos = self.drawTab(window, pos, h - 2, (sub == cursub), subs[sub])
@@ -85,10 +129,11 @@ class interface():
 
 		#--> right align
 		#draw search box
-		self.drawTab(window, w - 22, h - 2, False, "Search...", 20)
+		self.drawTab(window, w - 2 - search_box_with, h - 2, False, "Search...",
+			search_box_with)
 
 		#draw logins
-		pos = w - 22 - 2
+		pos = w - 4 - search_box_with
 		pos -= 2
 		self.drawTab(window, pos, h - 2, False, "+",
 			roundl = (self.look['left_new_tab_rounding'] == "true"),
@@ -106,6 +151,7 @@ class interface():
 		if not w:
 			w = len(string)
 			if self.look['tab_padding'] == "true":
+				#if padding add a space for each side
 				w += 2
 
 		draw_string = "xxxxxx"

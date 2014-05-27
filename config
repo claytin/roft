@@ -23,3 +23,7 @@ right_rounding = false
 left_new_tab_rounding = false
 right_new_tab_rounding = true
 use_colors = true
+
+#yep.. the d
+search_box_with = 30
+search_box_min = 15
