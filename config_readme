@@ -1,0 +1,86 @@
+#piss
+
+[keys]
+exit = q
+kill = Q
+move_up = k
+move_down = j
+move_left = h
+move_right = l
+upvote = a
+downvote = z
+search = /
+
+[look]
+
+#use box characters, line drawing characters, and other special characters,
+#or just plain ascii not all terminals and fonts support this fancy characters
+#with special characters:
+# ┌───────┐
+# │example│
+#─┘       └─
+#without special characters:
+# +-------+
+# |example|
+#-+       +-
+special_characters = true
+
+#if ascii is selected (special_characters = false) then used this to select
+#which characters for drawing
+#corresponding tab parts parts:
+# daaaaaae
+# c      c
+#ab      fa
+ascii_characters = "abcdef"
+
+#pad application tabs (not the character) with surrounding whitespace
+#with padding:
+# +---------+
+# | example |
+#-+         +-
+#without padding:
+# +-------+
+# |example|
+#-+       +-
+tab_padding = false
+
+#thicken selected item, requires special characters enabled
+#thickening:
+# ┏━━━━━━━┓┌───────┐
+# ┃example┃│example│
+#━┛       ┗┷━━━━━━━┷━
+#no thickening:
+# ┌───────┐┌───────┐
+# │example││example│
+#─┘       └┴───────┴─
+thicken_selected = true
+
+#spacing between tabs, each each tab stands alone
+#with spacing:
+# ┏━━━━━━━┓┌───────┐┌───────┐
+# ┃example┃│example││example│
+#━┛       ┗┷━━━━━━━┷┷━━━━━━━┷━
+#without spacing:
+# ┏━━━━━━━┱───────┬───────┐
+# ┃example┃example│example│
+#━┛       ┗━━━━━━━┷━━━━━━━┷━
+tab_spacing = true
+
+#tab corner rounding, a few options for tab rounding (requires special characters)
+#thick lines cannot have rounding
+#left_tab_rounding              left_new_tab_rounding
+#          | right_tab_rounding       |
+#          V       V                  V
+# ┏━━━━━━━┓╭───────╮┌───────┐┌───────┐╭─╮<-right_new_tab_rounding
+# ┃example┃│example││example││example││+│
+#━┛       ┗┷━━━━━━━┷┷━━━━━━━┷┷━━━━━━━┷┷━┷━
+left_rounding = false
+right_rounding = false
+left_new_tab_rounding = false
+right_new_tab_rounding = true
+
+#yep
+use_colors = true
+
+#customize colors:
+#piss
