@@ -1,3 +1,5 @@
+#piss?
+
 [keys]
 exit = q
 kill = Q
@@ -10,26 +12,47 @@ downvote = z
 search = /
 
 [look]
+#use non ascii characters that not all terminals support
 use_special_characters = true
+
+#speical box drawing chracters
 special_characters = ─┘│┌┐└┴
-special_characters_bold = ━┛┃┏┓┗┷
-special_characters_round = ╭╮
-special_character_cont = →
-ascii_characters = -+|+++
-tab_padding = false
+
+#will thicken/bold the selected tabs and tab bar
 thicken_selected = true
+
+#if bolding and special chracters, use these characters
+special_characters_bold = ━┛┃┏┓┗┷
+
+#used for tab rounding w/ speical characters
+special_characters_round = ╭╮
+
+#if tab bar is overflowing, use this char
+special_character_cont = →
+
+#if special characters is disabled, use this
+ascii_characters = -+|+++
+
+#adds a space before and after each title in the tab
+tab_padding = false
+
+#each tab stands by itself
 tab_spacing = true
+
+#tab options, effected by other settings
 left_rounding = false
 right_rounding = false
 left_new_tab_rounding = false
 right_new_tab_rounding = true
+
+#y
 use_colors = true
 
 #initial width (also... the D)
-search_box_with = 40
+search_box_with = 30
 
 #width to scale down to when condensing
-search_box_med = 30
+search_box_med = 20
 
 #min width allowed (will hide after this)
 search_box_min = 15

@@ -2,7 +2,7 @@ import interface
 
 class control():
 	def __init__(self, _keymap, _look):
-		self.min_width = 30
+		self.min_width = 10
 		self.min_height = 10
 
 		self.keymap = _keymap

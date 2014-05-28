@@ -45,15 +45,17 @@ class interface():
 		h = window.getmaxyx()[0]
 
 		#tmp data
-		subs = ["Lorem", "ipsum", "dolor", "sit", "amet", "consectetur",
-			"adipisicing", "elit", "sed", "do", "eiusmod", "tempor",
-			"Lorem", "ipsum", "dolor", "sit", "amet", "consectetur",
-			"adipisicing", "elit", "sed", "do", "eiusmod", "tempor"]
-		cursub = 1
+		#subs = ["Lorem", "ipsum", "dolor", "sit", "amet", "consectetur",
+		#	"adipisicing", "elit", "sed", "do", "eiusmod", "tempor",
+		#	"Lorem", "ipsum", "dolor", "sit", "amet", "consectetur",
+		#	"adipisicing", "elit", "sed", "do", "eiusmod", "tempor"]
+		subs = ["ass", "piss"]
+		cursub = 0
 
-		logins = ["curly", "booster", "sue", "balrog", "quote", "jack",
-			"kazuma", "king"]
-		curlogin = 2
+		#logins = ["curly", "booster", "sue", "balrog", "quote", "jack",
+		#	"kazuma", "king"]
+		logins = ["fucko", "ass?"]
+		curlogin = 1
 
 		window.clear()
 		#window.box(0, 0)
@@ -95,11 +97,13 @@ class interface():
 		#search -> search_min -> remove log -> remove sub -> remove search ->
 		#shorten log -> shorten sub
 		while bar_total > w:
+			#search box intial shorten from max to med
 			while bar_total > w and \
 				search_box_with > int(self.look['search_box_med']):
 				search_box_with -= 1
 				bar_total -= 1
 
+			#remove logins
 			if len(logins) > 1 and len(logins) >= len(subs) / 2:
 				if len(logins) - 1 == curlogin:
 					bar_total -= len(logins[len(logins) - 2]) + tab_padding_amount
@@ -111,9 +115,12 @@ class interface():
 					cont_logs = True
 					bar_total += 3
 				logins = logins[0: len(logins) - 1]
+
+			#check if fits
 			if not bar_total > w:
 				break
 
+			#remove subs
 			if len(subs) > 1 and len(subs) > len(logins):
 				if len(subs) - 1 == cursub:
 					bar_total -= len(subs[len(subs) - 2]) + tab_padding_amount
@@ -128,23 +135,31 @@ class interface():
 				cont_subs = True
 			if not bar_total > w:
 				break
+
+			#change search box down to min width
 			if search_box_with > int(self.look['search_box_min']):
 				search_box_with -= 1
 				bar_total -= 1
 			if not bar_total > w:
 				break
 
+			#remove characters as a last resort
 			if len(logins) <= 1 and len(subs) <= 1:
+				#remove search box compleatly
 				if not remove_search:
 					remove_search = True
 					bar_total -= int(self.look['search_box_min'])
+
 				if not bar_total > w:
 					break
+
 				if len(logins[0]) > 1 and len(logins[0]) >= len(subs[0]) / 2:
 					logins[0] = logins[0][0:-1]
 					bar_total -= 1
+
 				if not bar_total > w:
 					break
+
 				if len(subs[0]) > 1 and len(subs[0]) > len(logins[0]):
 					subs[0] = subs[0][0:-1]
 					bar_total -= 1
