@@ -29,7 +29,7 @@ class interface():
 			pass
 
 		#header bar stuff
-		self.headerBarWindow = curses.newwin(5, self.stdscr.getmaxyx()[1], 0, 0)
+		self.headerBarWindow = curses.newwin(4, self.stdscr.getmaxyx()[1], 0, 0)
 		self.headerBar = headerBar.headerBar(self.headerBarWindow, self.look,
 			self.drawTab)
 		self.headerBar.draw()
