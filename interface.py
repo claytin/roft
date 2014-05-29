@@ -29,10 +29,18 @@ class interface():
 			pass
 
 		#header bar stuff
-		self.headerBarWindow = curses.newwin(4, self.stdscr.getmaxyx()[1], 0, 0)
+		self.headerBarWindow = curses.newwin(4, self.stdscr.getmaxyx()[1], 1, 0)
 		self.headerBar = headerBar.headerBar(self.headerBarWindow, self.look,
 			self.drawTab)
 		self.headerBar.draw()
+
+		#infobar stuff
+		if self.look['infobar_pos'] == "top":
+			infobar_pos = 0
+		else:
+			infobar_pos = 0
+
+		self.infoBarWindow = curses.newwin(1, self.stdscr.getmaxyx()[1], infobar_pos, 0)
 
 		while True:
 			key = self.stdscr.getkey()
