@@ -52,7 +52,7 @@ use_colors = true
 search_box_max = 30
 
 #width to scale down to when condensing
-search_box_med = 20
+search_box_med = 25
 
 #min width allowed (will hide after this)
-search_box_min = 10
+search_box_min = 15

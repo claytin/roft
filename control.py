@@ -30,6 +30,4 @@ class control():
 				self.ui.stdscr.addstr("too small")
 				return
 
-			self.ui.headerBar.resize(5, self.ui.stdscr.getmaxyx()[1])
-			self.ui.stdscr.refresh()
-			self.ui.resize(self.ui.headerBar)
+			self.ui.resize()
