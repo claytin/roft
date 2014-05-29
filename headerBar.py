@@ -15,7 +15,7 @@ class headerBar():
 			"adipisicing", "elit", "sed", "do", "eiusmod", "tempor",
 			"Lorem", "ipsum", "dolor", "sit", "amet", "consectetur",
 			"adipisicing", "elit", "sed", "do", "eiusmod", "tempor"]
-		cursub = 0
+		cursub = 3
 
 		logins = ["curly", "booster", "sue", "balrog", "quote", "jack",
 			"kazuma", "king"]
@@ -61,6 +61,11 @@ class headerBar():
 		#order:
 		#search -> search_min -> remove log -> remove sub -> remove search ->
 		#shorten log -> shorten sub
+
+		#THIS
+		#IS
+		#(ass)PISS
+		#i should really optomize it
 		while bar_total > w:
 			#search box intial shorten from max to med
 			while bar_total > w and \
