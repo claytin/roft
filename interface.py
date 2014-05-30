@@ -3,6 +3,7 @@ from curses import wrapper
 
 #ui stuff
 import headerBar
+import infoBar
 
 class interface():
 	def __init__(self, _event, _look):
@@ -29,7 +30,8 @@ class interface():
 			pass
 
 		#header bar stuff
-		self.headerBarWindow = curses.newwin(4, self.stdscr.getmaxyx()[1], 1, 0)
+		self.headerBarWindow = curses.newwin(4, self.stdscr.getmaxyx()[1],
+			1, 0)
 		self.headerBar = headerBar.headerBar(self.headerBarWindow, self.look,
 			self.drawTab)
 		self.headerBar.draw()
@@ -38,21 +40,27 @@ class interface():
 		if self.look['infobar_pos'] == "top":
 			infobar_pos = 0
 		else:
-			infobar_pos = 0
+			infobar_pos = self.stdscr.getmaxyx()[0] - 4
 
-		self.infoBarWindow = curses.newwin(1, self.stdscr.getmaxyx()[1], infobar_pos, 0)
+		self.infoBarWindow = curses.newwin(1, self.stdscr.getmaxyx()[1],
+			infobar_pos, 0)
+		self.infoBar = infoBar.infoBar(self.infoBarWindow, self.look)
+		self.infoBar.setString("status", "starting up")
 
 		while True:
 			key = self.stdscr.getkey()
-			self.stdscr.move(0, 0)
-			self.stdscr.addstr("key " + str(key))
+			self.infoBar.setString("key", "key: " + key)
 
 			self.event(key)
 
 	def resize(self):
 		self.stdscr.refresh()
+
 		self.headerBarWindow.resize(5, self.stdscr.getmaxyx()[1])
 		self.headerBar.draw()
+
+		self.infoBarWindow.resize(1, self.stdscr.getmaxyx()[1])
+		self.infoBar.draw()
 
 	def drawTab(self, window, x, y, selected, string, w = False,
 		roundr = False, roundl = False):
