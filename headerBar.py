@@ -43,7 +43,11 @@ class headerBar():
 		#each "+" tab takes up three plus spaces between leftside, logs/subs,
 		#and logs/seach, and search box padding
 		number_of_spacers = 3 + 3 + 3 + 2
-		tab_padding_amount = 2
+		if self.look['tab_spacing'] == "true":
+			tab_padding_amount = 2
+		else:
+			tab_padding_amount = 1
+
 		search_box_with = int(self.look['search_box_max'])
 
 		bar_total = search_box_with + number_of_spacers
@@ -61,7 +65,6 @@ class headerBar():
 		#order:
 		#search -> search_min -> remove log -> remove sub -> remove search ->
 		#shorten log -> shorten sub
-
 		#THIS
 		#IS
 		#(ass)PISS
@@ -145,17 +148,29 @@ class headerBar():
 		#left align <--
 		#draw subs (starting one space over)
 		pos = 1
+		curpos = 0
 		for sub in range(len(subs)):
-			pos = self.drawTab(self.window, pos, 2, (sub == cursub), subs[sub])
-			pos += 1
+			if self.look['tab_spacing'] == "false" and sub == cursub:
+				curpos = pos
+			pos = self.drawTab(self.window, pos, 2, (sub == cursub), subs[sub],
+				padding = not (self.look['tab_spacing'] == "false" and sub is not 0))
+			if self.look['tab_spacing'] == "true":
+				pos += 1
 		if cont_subs:
 			pos = self.drawTab(self.window, pos, 2,
-				False, self.look['special_character_cont'])
-			pos += 1
+				False, self.look['special_character_cont'],
+				padding = (self.look['tab_spacing'] == "true"))
+			if self.look['tab_spacing'] == "true":
+				pos += 1
+		if self.look['tab_spacing'] == "false":
+			self.drawTab(self.window, curpos, 2, True,
+				subs[cursub], padding = False, paddingr = False,
+				paddingl = (cursub == 0))
 
 		pos = self.drawTab(self.window, pos, 2, False, "+",
 			roundl = (self.look['left_new_tab_rounding'] == "true"),
-			roundr = (self.look['right_new_tab_rounding'] == "true"))
+			roundr = (self.look['right_new_tab_rounding'] == "true"),
+			padding = (self.look['tab_spacing'] == "true"))
 
 		#--> right align
 		#draw search box
@@ -170,14 +185,32 @@ class headerBar():
 		pos -= 2
 		self.drawTab(self.window, pos, 2, False, "+",
 			roundl = (self.look['left_new_tab_rounding'] == "true"),
-			roundr = (self.look['right_new_tab_rounding'] == "true"))
+			roundr = (self.look['right_new_tab_rounding'] == "true"),
+			padding = (self.look['tab_spacing'] == "true"))
 		if cont_logs:
-			pos -= 3
+			if self.look['tab_spacing'] == "true":
+				pos -= 1
+			pos -= 2
 			self.drawTab(self.window, pos, 2,
-				False, self.look['special_character_cont'])
+				False, self.look['special_character_cont'],
+				padding = (self.look['tab_spacing'] == "true"))
 		for login in range(len(logins)):
 			revlog = len(logins) - login - 1
-			pos = pos - len(logins[revlog]) - 2
-			self.drawTab(self.window, pos, 2, (revlog == curlogin), logins[revlog])
+			if self.look['tab_spacing'] == "true":
+				pos = pos - len(logins[revlog]) - 2
+			else:
+				pos = pos - len(logins[revlog]) - 1
+
+			if revlog == curlogin:
+				curpos = pos
+			self.drawTab(self.window, pos, 2, (revlog == curlogin),
+				logins[revlog],
+				padding = not (self.look['tab_spacing'] == "false"
+				and login is not len(logins) - 1))
+
+		if self.look['tab_spacing'] == "false":
+			self.drawTab(self.window, curpos, 2, True,
+				logins[curlogin], padding = False, paddingr = False,
+				paddingl = (cursub == 0))
 
 		self.window.refresh()

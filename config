@@ -16,13 +16,13 @@ search = /
 use_special_characters = true
 
 #speical box drawing chracters
-special_characters = ─┘│┌┐└┴
+special_characters = ─┘│┌┐└┴┬┬
 
 #will thicken/bold the selected tabs and tab bar
 thicken_selected = true
 
 #if bolding and special chracters, use these characters
-special_characters_bold = ━┛┃┏┓┗┷
+special_characters_bold = ━┛┃┏┓┗┷┲┱
 
 #used for tab rounding w/ speical characters
 special_characters_round = ╭╮
@@ -37,7 +37,7 @@ ascii_characters = -+|+++
 tab_padding = false
 
 #each tab stands by itself
-tab_spacing = true
+tab_spacing = false
 
 #tab options, effected by other settings
 left_rounding = false

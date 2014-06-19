@@ -29,7 +29,7 @@ class infoBar():
 				self.window.getmaxyx()[1]) - 1
 			for char in range(progress_chars):
 				self.window.move(0, char)
-				self.window.addch("#")
+				self.window.addch(" ", 2)
 			self.window.move(0, int(self.window.getmaxyx()[1] / 2) - 2)
 			self.window.addstr(str(self.progress) + "%")
 

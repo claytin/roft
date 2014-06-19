@@ -23,6 +23,7 @@ class interface():
 
 		#create color pairs
 		curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_BLACK)
+		curses.init_pair(2, curses.COLOR_BLACK, curses.COLOR_WHITE)
 
 		#first load message
 		firstLoad = True
@@ -49,7 +50,7 @@ class interface():
 
 		while True:
 			key = self.stdscr.getkey()
-			self.infoBar.setString("key", "key: " + key)
+			self.infoBar.setString("key", "key: " + repr(key))
 
 			self.event(key)
 
@@ -62,8 +63,9 @@ class interface():
 		self.infoBarWindow.resize(1, self.stdscr.getmaxyx()[1])
 		self.infoBar.draw()
 
-	def drawTab(self, window, x, y, selected, string, w = False,
-		roundr = False, roundl = False):
+	def drawTab(self, window, x, y, selected = False, string = "", w = False,
+		roundr = False, roundl = False, paddingr = False, paddingl = False,
+		padding = True):
 		pos = x
 		if not w:
 			w = len(string)
@@ -98,7 +100,10 @@ class interface():
 		if roundl and self.look['use_special_characters'] == "true":
 			window.addch(self.look['special_characters_round'][0])
 		else:
-			window.addch(draw_string[3])
+			if paddingl or padding:
+				window.addch(draw_string[3])
+			else:
+				window.addch(draw_string[7])
 
 		#middle... ish
 		if self.look['tab_padding'] == "true":
@@ -135,7 +140,10 @@ class interface():
 		if roundr and self.look['use_special_characters'] == "true":
 			window.addch(self.look['special_characters_round'][1])
 		else:
-			window.addch(draw_string[4])
+			if paddingr or padding:
+				window.addch(draw_string[4])
+			else:
+				window.addch(draw_string[8])
 
 		return pos
 
