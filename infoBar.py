@@ -17,7 +17,6 @@ class infoBar():
 		self.draw()
 
 	def draw(self):
-		self.window.clear()
 		self.window.move(0, 0)
 
 		for item in self.strings:

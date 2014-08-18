@@ -18,10 +18,10 @@ class control():
 
 		if key == self.keymap["exit"] or key == "^[":
 			pass
-		if key == self.keymap["kill"]:
+		elif key == self.keymap["kill"]:
 			self.ui.stop()
 
-		if key == "KEY_RESIZE":
+		elif key == "KEY_RESIZE":
 			if self.ui.stdscr.getmaxyx()[1] < self.min_width or \
 				self.ui.stdscr.getmaxyx()[0] < self.min_height:
 				self.ui.stdscr.clear()
