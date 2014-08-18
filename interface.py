@@ -80,6 +80,10 @@ class interface():
 
 		self.infoBarWindow.resize(1, self.stdscr.getmaxyx()[1])
 		self.infoBar.draw()
+		
+		self.subWindow.resize(self.stdscr.getmaxyx()[0] - 4,
+			self.stdscr.getmaxyx()[1])
+		self.sub.draw()
 
 	def drawTab(self, window, x, y, selected = False, string = "", w = False,
 		roundr = False, roundl = False, paddingr = False, paddingl = False,
