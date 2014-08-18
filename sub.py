@@ -16,36 +16,44 @@ class sub():
 
 		voteCenter = int(rightAlignWidth / 2) + 2
 		rightAlignWidth += 2
+		itemOffset = 0
 
 		curitem = 0
 		for item in self.items:
-			itemOffset = curitem * (3 + int(self.look['post_pad']))
+			itemTextOffset = 0
 
 			self.window.move(itemOffset, voteCenter)
 			self.window.addstr(self.look['up_char'])
 			self.window.move(itemOffset, rightAlignWidth + 1)
-			self.window.addstr(item.title)
 
-			self.window.move(itemOffset + 1, 0)
+			if len(item.title) < self.window.getmaxyx()[1] - 7:
+				self.window.addstr(item.title)
+			else:
+				lastPos = 0
+				while lastPos < len(item.title):
+					self.window.move(itemOffset + itemTextOffset, rightAlignWidth + 1)
+					self.window.addstr(item.title[lastPos:(self.window.getmaxyx()[1] - 8) + lastPos])
+					lastPos = (self.window.getmaxyx()[1] - 8) + lastPos
+					itemTextOffset += 1
+
+			itemOffset += 1
+			self.window.move(itemOffset, 0)
 			self.window.addstr(str(curitem + 1))
-			self.window.move(itemOffset + 1, voteCenter -
+			self.window.move(itemOffset, voteCenter -
 				int(len(str(item.score)) / 2))
 			self.window.addstr(str(item.score))
 
-			self.window.move(itemOffset + 2, voteCenter)
+			itemOffset += 1
+			self.window.move(itemOffset, voteCenter)
 			self.window.addstr(self.look['down_char'])
 			curitem += 1
 
+			itemOffset += int(self.look['post_pad']) + 1
+			if itemTextOffset > 0:
+				itemOffset += itemTextOffset - 3
+
 		self.window.refresh()
 
-		self.window.move(0, 0)
-		self.window.addstr(".")
-		self.window.move(self.window.getmaxyx()[0] - 1, 0)
-		self.window.addstr(".")
-		self.window.move(self.window.getmaxyx()[0] - 1, self.window.getmaxyx()[1] - 2)
-		self.window.addstr(".")
-		self.window.move(0, self.window.getmaxyx()[1] - 2)
-		self.window.addstr(".")
 
 class subItem():
 	def __init__(self, _title, _score, _user, _upScore, _downScore, _comments):

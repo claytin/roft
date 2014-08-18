@@ -37,7 +37,7 @@ class interface():
 		self.sub = sub.sub(self.subWindow, self.look, "test_sub")
 
 		testitem0 = sub.subItem("test item 1's title", 420, "poster name", 420, 0, 69);
-		testitem1 = sub.subItem( "another test item with a long title that hopefully takes up multiple lines to check the line wrapping and other stuff.. .fdsakjfdsl;f ffdasf fdasfdsa fds f das f dsa fd sa fd ds fdsaf a f dsa fsda fasdfd dsa fsda fa", 1337, "another poster", 1339, 2, 69);
+		testitem1 = sub.subItem( "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc", 1337, "another poster", 1339, 2, 69);
 		testitem2 = sub.subItem("post title", -101, "yep...", 1, 102, 69);
 		testitem3 = sub.subItem("some item", 1, "poster name", 420, 0, 5);
 		testitem4 = sub.subItem( "breaking news?", 12, "ass", 1339, 5, 12);
