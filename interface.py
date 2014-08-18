@@ -4,6 +4,7 @@ from curses import wrapper
 #ui stuff
 import headerBar
 import infoBar
+import sub
 
 class interface():
 	def __init__(self, _event, _look):
@@ -30,12 +31,26 @@ class interface():
 		if firstLoad:
 			pass
 
+		#sub stuff
+		self.subWindow = curses.newwin(_stdscr.getmaxyx()[0] - 4,
+			self.stdscr.getmaxyx()[1], 4, 0)
+		self.sub = sub.sub(self.subWindow, self.look, "test_sub")
+
+		testitem0 = sub.subItem("test item 1's title", 420, "poster name", 420, 0, 69);
+		testitem1 = sub.subItem( "another test item with a long title that hopefully takes up multiple lines to check the line wrapping and other stuff.. .fdsakjfdsl;f ffdasf fdasfdsa fds f das f dsa fd sa fd ds fdsaf a f dsa fsda fasdfd dsa fsda fa", 1337, "another poster", 1339, 2, 69);
+		testitem2 = sub.subItem("post title", -101, "yep...", 1, 102, 69);
+		testitem3 = sub.subItem("some item", 1, "poster name", 420, 0, 5);
+		testitem4 = sub.subItem( "breaking news?", 12, "ass", 1339, 5, 12);
+		testitem5 = sub.subItem("idk...", 12234, "piss", 1, 0, 1);
+
+		self.sub.items = [testitem0, testitem1, testitem2, testitem3, testitem4, testitem5]
+
 		#header bar stuff
 		self.headerBarWindow = curses.newwin(4, self.stdscr.getmaxyx()[1],
 			1, 0)
 		self.headerBar = headerBar.headerBar(self.headerBarWindow, self.look,
 			self.drawTab)
-		self.headerBar.draw()
+		self.headerBar.sublist = self.headerBar.sublist + [self.sub]
 
 		#infobar stuff
 		if self.look['infobar_pos'] == "top":
@@ -47,6 +62,9 @@ class interface():
 			infobar_pos, 0)
 		self.infoBar = infoBar.infoBar(self.infoBarWindow, self.look)
 		self.infoBar.setString("status", "starting up")
+
+		self.headerBar.draw()
+		self.sub.draw();
 
 		while True:
 			key = self.stdscr.getkey()

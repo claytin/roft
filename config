@@ -59,3 +59,13 @@ search_box_min = 15
 
 #info bar pos values: top, bottom
 infobar_pos = top
+
+#voting characters
+up_char = ↑
+down_char = ↓
+
+#post with no score
+no_score = •
+
+#padding between posts
+post_pad = 1

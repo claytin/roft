@@ -4,6 +4,8 @@ class headerBar():
 		self.look = _look
 		self.window = _window
 		self.drawTab = _draw_tab_function
+		self.curSub = 0;
+		self.sublist = []
 
 	def draw(self):
 		#window w/h
@@ -11,11 +13,10 @@ class headerBar():
 		#h = self.window.getmaxyx()[0]
 
 		#tmp data
-		subs = ["Lorem", "ipsum", "dolor", "sit", "amet", "consectetur",
-			"adipisicing", "elit", "sed", "do", "eiusmod", "tempor",
-			"Lorem", "ipsum", "dolor", "sit", "amet", "consectetur",
-			"adipisicing", "elit", "sed", "do", "eiusmod", "tempor"]
-		cursub = 3
+		subs = []
+		for sub in self.sublist:
+			subs = subs + [sub.name]
+		cursub = self.curSub
 
 		logins = ["curly", "booster", "sue", "balrog", "quote", "jack",
 			"kazuma", "king"]
@@ -162,7 +163,7 @@ class headerBar():
 				padding = (self.look['tab_spacing'] == "true"))
 			if self.look['tab_spacing'] == "true":
 				pos += 1
-		if self.look['tab_spacing'] == "false":
+		if self.look['tab_spacing'] == "false" and cursub <= len(subs) - 1:
 			self.drawTab(self.window, curpos, 2, True,
 				subs[cursub], padding = False, paddingr = False,
 				paddingl = (cursub == 0))
