@@ -36,14 +36,24 @@ class interface():
 			self.stdscr.getmaxyx()[1], 4, 0)
 		self.sub = sub.sub(self.subWindow, self.look, "test_sub")
 
-		testitem0 = sub.subItem("test item 1's title", 420, "poster name", 420, 0, 69);
-		testitem1 = sub.subItem( "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc", 1337, "another poster", 1339, 2, 69);
-		testitem2 = sub.subItem("post title", -101, "yep...", 1, 102, 69);
-		testitem3 = sub.subItem("some item", 1, "poster name", 420, 0, 5);
-		testitem4 = sub.subItem( "breaking news?", 12, "ass", 1339, 5, 12);
-		testitem5 = sub.subItem("idk...", 12234, "piss", 1, 0, 1);
+		testitem0 = sub.subItem("test item 1's title", 420, "poster name",
+			420, 0, 69)
+		testitem1 = sub.subItem("abcabcabcabcabcabcabcabcabcabcabcabcabcabc" \
+			"abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcab" \
+			"cabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabca" \
+			"bcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc" \
+			"abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcab" \
+			"cabcabcabc", 1337, "another poster", 1339, 2, 69)
+		testitem2 = sub.subItem("post title", -101, "yep...", 1, 102, 69)
+		testitem3 = sub.subItem("some item", 1, "poster name", 420, 0, 5)
+		testitem4 = sub.subItem("breaking news?", 12, "ass", 1339, 5, 12)
+		testitem5 = sub.subItem("idk...", 12234, "piss", 1, 0, 1)
 
-		self.sub.items = [testitem0, testitem1, testitem2, testitem3, testitem4, testitem5]
+		self.sub.items = [testitem0, testitem1, testitem2, testitem3,
+			testitem4, testitem5]
+
+		#set this test sub as the current
+		self.curSub = self.sub
 
 		#header bar stuff
 		self.headerBarWindow = curses.newwin(4, self.stdscr.getmaxyx()[1],
@@ -64,7 +74,7 @@ class interface():
 		self.infoBar.setString("status", "starting up")
 
 		self.headerBar.draw()
-		self.sub.draw();
+		self.sub.draw()
 
 		while True:
 			key = self.stdscr.getkey()
@@ -80,7 +90,7 @@ class interface():
 
 		self.infoBarWindow.resize(1, self.stdscr.getmaxyx()[1])
 		self.infoBar.draw()
-		
+
 		self.subWindow.resize(self.stdscr.getmaxyx()[0] - 4,
 			self.stdscr.getmaxyx()[1])
 		self.sub.draw()

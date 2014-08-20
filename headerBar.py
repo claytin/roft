@@ -4,7 +4,7 @@ class headerBar():
 		self.look = _look
 		self.window = _window
 		self.drawTab = _draw_tab_function
-		self.curSub = 0;
+		self.curSub = 0
 		self.sublist = []
 
 	def draw(self):
