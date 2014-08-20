@@ -13,7 +13,8 @@ class sub():
 		self.draw()
 
 	def moveDown(self):
-		self.curItem += 1
+		if self.curItem < len(self.items) - 1:
+			self.curItem += 1
 		self.draw()
 
 	def draw(self):
@@ -33,30 +34,6 @@ class sub():
 
 		curitem = 0
 		for item in self.items:
-			if curitem == self.curItem:
-				#draw border top part
-				self.window.move(itemOffset - 1, 0)
-				self.window.addstr(self.look['special_characters'][3])
-				self.window.move(itemOffset - 1 + 4, 0)
-				self.window.addstr(self.look['special_characters'][5])
-				self.window.move(itemOffset - 1 + 4,
-					self.window.getmaxyx()[1] - 1)
-				self.window.addstr(self.look['special_characters'][1])
-				for i in range(1, self.window.getmaxyx()[1] - 1):
-					self.window.move(itemOffset - 1, i)
-					self.window.addstr(self.look['special_characters'][0])
-					self.window.move(itemOffset - 1 + 4, i)
-					self.window.addstr(self.look['special_characters'][0])
-				self.window.move(itemOffset - 1, self.window.getmaxyx()[1] -
-					itemLeftPad)
-				self.window.addstr(self.look['special_characters'][4])
-				for i in range(1, 4):
-					self.window.move(itemOffset - 1 + i,
-						self.window.getmaxyx()[1] - itemLeftPad)
-					self.window.addstr(self.look['special_characters'][2])
-					self.window.move(itemOffset - 1 + i, 0)
-					self.window.addstr(self.look['special_characters'][2])
-
 			itemTextOffset = 0
 
 			self.window.move(itemOffset, voteCenter + itemLeftPad)
@@ -91,6 +68,38 @@ class sub():
 			itemOffset += int(self.look['post_pad']) + 1
 			if itemTextOffset > 3:
 				itemOffset += itemTextOffset - 3
+
+			if curitem == self.curItem:
+				borderOffset = 0
+				borderHeight = 0
+				if itemTextOffset > 0:
+					borderOffset = itemOffset - itemTextOffset - 1
+					borderHeight = itemTextOffset + 1
+				else:
+					borderOffset = itemOffset - 4
+					borderHeight = 4
+				#draw border top part
+				self.window.move(borderOffset - 1, 0)
+				self.window.addstr(self.look['special_characters'][3])
+				self.window.move(borderOffset - 1 + borderHeight, 0)
+				self.window.addstr(self.look['special_characters'][5])
+				self.window.move(borderOffset - 1 + borderHeight,
+					self.window.getmaxyx()[1] - 1)
+				self.window.addstr(self.look['special_characters'][1])
+				for i in range(1, self.window.getmaxyx()[1] - 1):
+					self.window.move(borderOffset - 1, i)
+					self.window.addstr(self.look['special_characters'][0])
+					self.window.move(borderOffset - 1 + borderHeight, i)
+					self.window.addstr(self.look['special_characters'][0])
+				self.window.move(borderOffset - 1, self.window.getmaxyx()[1] -
+					itemLeftPad)
+				self.window.addstr(self.look['special_characters'][4])
+				for i in range(1, borderHeight):
+					self.window.move(borderOffset - 1 + i,
+						self.window.getmaxyx()[1] - itemLeftPad)
+					self.window.addstr(self.look['special_characters'][2])
+					self.window.move(borderOffset - 1 + i, 0)
+					self.window.addstr(self.look['special_characters'][2])
 
 			curitem += 1
 
