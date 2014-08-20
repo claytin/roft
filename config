@@ -31,13 +31,13 @@ special_characters_round = ╭╮
 special_character_cont = →
 
 #if special characters is disabled, use this
-ascii_characters = -+|+++
+ascii_characters = -+|++++++
 
 #adds a space before and after each title in the tab
 tab_padding = false
 
 #each tab stands by itself
-tab_spacing = false
+tab_spacing = true
 
 #tab options, effected by other settings
 left_rounding = false

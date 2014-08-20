@@ -20,9 +20,9 @@ class control():
 			pass
 		elif key == self.keymap["kill"]:
 			self.ui.stop()
-		elif key == self.keymap['move_up'] and self.ui.curSub.curItem > 0:
+		elif key == self.keymap['move_up'] or key == 'KEY_UP':
 			self.ui.curSub.moveUp()
-		elif key == self.keymap['move_down']:
+		elif key == self.keymap['move_down'] or key == 'KEY_DOWN':
 			self.ui.curSub.moveDown()
 
 		elif key == "KEY_RESIZE":
