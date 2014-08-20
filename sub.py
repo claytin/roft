@@ -7,6 +7,15 @@ class sub():
 		self.window = _window
 		self.look = _look
 
+	def moveUp(self):
+		if self.curItem > 0:
+			self.curItem -= 1
+		self.draw()
+
+	def moveDown(self):
+		self.curItem += 1
+		self.draw()
+
 	def draw(self):
 		self.window.clear()
 
@@ -30,21 +39,23 @@ class sub():
 				self.window.addstr(self.look['special_characters'][3])
 				self.window.move(itemOffset - 1 + 4, 0)
 				self.window.addstr(self.look['special_characters'][5])
-				self.window.move(itemOffset - 1 + 4, self.window.getmaxyx()[1] - 1)
+				self.window.move(itemOffset - 1 + 4,
+					self.window.getmaxyx()[1] - 1)
 				self.window.addstr(self.look['special_characters'][1])
 				for i in range(1, self.window.getmaxyx()[1] - 1):
 					self.window.move(itemOffset - 1, i)
 					self.window.addstr(self.look['special_characters'][0])
 					self.window.move(itemOffset - 1 + 4, i)
 					self.window.addstr(self.look['special_characters'][0])
-				self.window.move(itemOffset - 1, self.window.getmaxyx()[1] - itemLeftPad)
+				self.window.move(itemOffset - 1, self.window.getmaxyx()[1] -
+					itemLeftPad)
 				self.window.addstr(self.look['special_characters'][4])
 				for i in range(1, 4):
-					self.window.move(itemOffset - 1 + i, self.window.getmaxyx()[1] - itemLeftPad)
+					self.window.move(itemOffset - 1 + i,
+						self.window.getmaxyx()[1] - itemLeftPad)
 					self.window.addstr(self.look['special_characters'][2])
 					self.window.move(itemOffset - 1 + i, 0)
 					self.window.addstr(self.look['special_characters'][2])
-
 
 			itemTextOffset = 0
 
@@ -57,9 +68,13 @@ class sub():
 			else:
 				lastPos = 0
 				while lastPos < len(item.title):
-					self.window.move(itemOffset + itemTextOffset, rightAlignWidth + 1 + itemLeftPad)
-					self.window.addstr(item.title[lastPos:(self.window.getmaxyx()[1] - (9 + itemRightPad)) + lastPos])
-					lastPos = (self.window.getmaxyx()[1] - (9 + itemRightPad)) + lastPos
+					self.window.move(itemOffset + itemTextOffset,
+						rightAlignWidth + 1 + itemLeftPad)
+					self.window.addstr(item.title[
+						lastPos:(self.window.getmaxyx()[1] -
+						(9 + itemRightPad)) + lastPos])
+					lastPos = (self.window.getmaxyx()[1] -
+						(9 + itemRightPad)) + lastPos
 					itemTextOffset += 1
 
 			itemOffset += 1

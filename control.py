@@ -20,6 +20,10 @@ class control():
 			pass
 		elif key == self.keymap["kill"]:
 			self.ui.stop()
+		elif key == self.keymap['move_up'] and self.ui.curSub.curItem > 0:
+			self.ui.curSub.moveUp()
+		elif key == self.keymap['move_down']:
+			self.ui.curSub.moveDown()
 
 		elif key == "KEY_RESIZE":
 			if self.ui.stdscr.getmaxyx()[1] < self.min_width or \
