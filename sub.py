@@ -112,7 +112,6 @@ class sub():
 
 			curitem += 1
 
-		self.itemPad.box()
 		self.itemPad.refresh(self.scroll, 0, self.window.getbegyx()[0], 0,
 			self.window.getmaxyx()[0], self.window.getmaxyx()[1])
 
