@@ -1,3 +1,4 @@
+import urwid
 import interface
 
 class control():
@@ -9,8 +10,13 @@ class control():
 		self.look = _look
 		self.subs = []
 
-		self.ui = interface.interface(self.event, self.look)
-		self.ui.run()
+		self.ui = interface.interface(self.look)
+
+	def start(self):
+		filler = urwid.Filler('test', 'top')
+		loop = urwid.MainLoop(filler, unhandled_input = self.event)
+		self.ui.setup()
+		loop.run()
 
 	def event(self, key):
 		global min_width

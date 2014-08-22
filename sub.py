@@ -1,5 +1,3 @@
-import curses
-
 class sub():
 	def __init__(self, _window, _look, _name):
 		self.name = _name
@@ -11,8 +9,8 @@ class sub():
 
 		self.scroll = 0
 		#create initla pad (will resize later)
-		self.itemPad = curses.newpad(self.window.getmaxyx()[0],
-			self.window.getmaxyx()[1])
+		#self.itemPad = curses.newpad(self.window.getmaxyx()[0],
+		#self.window.getmaxyx()[1])
 
 	def moveUp(self):
 		if self.curItem > 0:

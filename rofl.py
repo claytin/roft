@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 
 import configparser
-#from os.path import expanduser
 import os.path
 
 #import interface
 import control
 
-#key map with a few things predifined
+#key map with a few things predefined
 keymap = {"exit": "q", "kill": "Q"}
 
 #appearance and stuff
@@ -33,3 +32,4 @@ else:
 	exit()
 
 ctrl = control.control(keymap, look)
+ctrl.start()

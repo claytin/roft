@@ -1,86 +1,88 @@
-import curses
-from curses import wrapper
+import urwid
 
 #ui stuff
 import headerBar
 import infoBar
 import sub
 
-class interface():
-	def __init__(self, _event, _look):
-		self.event = _event
+class interface(urwid.Filler):
+	def __init__(self, _look):
 		self.look = _look
 
-	def run(self):
-		wrapper(self.init)
+	#def run(self):
+		#wrapper(self.init)
+
+	def setup(self):
+		pass
 
 	#set everything up then take input and send it to control
-	def init(self, _stdscr):
-		self.stdscr = _stdscr
-		self.stdscr.clear()
-		self.stdscr.refresh()
+	#def init(self, _stdscr):
+		#pass
+		#self.stdscr = _stdscr
+		#self.stdscr.clear()
+		#self.stdscr.refresh()
 
-		curses.curs_set(False)
+		#curses.curs_set(False)
 
-		#create color pairs
-		curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_BLACK)
-		curses.init_pair(2, curses.COLOR_BLACK, curses.COLOR_WHITE)
+		##create color pairs
+		#curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_BLACK)
+		#curses.init_pair(2, curses.COLOR_BLACK, curses.COLOR_WHITE)
 
-		#first load message
-		firstLoad = True
-		if firstLoad:
-			pass
+		##first load message
+		#firstLoad = True
+		#if firstLoad:
+			#pass
 
-		#sub stuff
-		self.subWindow = curses.newwin(_stdscr.getmaxyx()[0] - 4,
-			self.stdscr.getmaxyx()[1], 4, 0)
-		self.sub = sub.sub(self.subWindow, self.look, "test_sub")
+		##sub stuff
+		#self.subWindow = curses.newwin(_stdscr.getmaxyx()[0] - 4,
+			#self.stdscr.getmaxyx()[1], 4, 0)
+		#self.sub = sub.sub(self.subWindow, self.look, "test_sub")
 
-		testitem0 = sub.subItem("test item 1's title", 420, "poster name",
-			420, 0, 69)
-		testitem1 = sub.subItem("abcabcabcabcabcabcabcabcabcabcabcabcabcabc" \
-			"abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcab" \
-			"cabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabca" \
-			"bcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc" \
-			"abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcab" \
-			"cabcabcabc", 1337, "another poster", 1339, 2, 69)
-		testitem2 = sub.subItem("post title", -101, "yep...", 1, 102, 69)
-		testitem3 = sub.subItem("some item", 1, "poster name", 420, 0, 5)
-		testitem4 = sub.subItem("breaking news?", 12, "ass", 1339, 5, 12)
-		testitem5 = sub.subItem("idk...", 12234, "piss", 1, 0, 1)
+		#testitem0 = sub.subItem("test item 1's title", 420, "poster name",
+			#420, 0, 69)
+		#testitem1 = sub.subItem("abcabcabcabcabcabcabcabcabcabcabcabcabcabc" \
+			#"abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcab" \
+			#"cabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabca" \
+			#"bcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc" \
+			#"abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcab" \
+			#"cabcabcabc", 1337, "another poster", 1339, 2, 69)
+		#testitem2 = sub.subItem("post title", -101, "yep...", 1, 102, 69)
+		#testitem3 = sub.subItem("some item", 1, "poster name", 420, 0, 5)
+		#testitem4 = sub.subItem("breaking news?", 12, "ass", 1339, 5, 12)
+		#testitem5 = sub.subItem("idk...", 12234, "piss", 1, 0, 1)
 
-		self.sub.items = [testitem0, testitem1, testitem2, testitem3,
-			testitem4, testitem5]
+		#self.sub.items = [testitem0, testitem1, testitem2, testitem3,
+			#testitem4, testitem5]
 
-		#set this test sub as the current
-		self.curSub = self.sub
+		##set this test sub as the current
+		#self.curSub = self.sub
 
-		#header bar stuff
-		self.headerBarWindow = curses.newwin(4, self.stdscr.getmaxyx()[1],
-			1, 0)
-		self.headerBar = headerBar.headerBar(self.headerBarWindow, self.look,
-			self.drawTab)
-		self.headerBar.sublist = self.headerBar.sublist + [self.sub]
+		##header bar stuff
+		#self.headerBarWindow = curses.newwin(4, self.stdscr.getmaxyx()[1],
+			#1, 0)
+		#self.headerBar = headerBar.headerBar(self.headerBarWindow, self.look,
+			#self.drawTab)
+		#self.headerBar.sublist = self.headerBar.sublist + [self.sub]
 
-		#infobar stuff
-		if self.look['infobar_pos'] == "top":
-			infobar_pos = 0
-		else:
-			infobar_pos = self.stdscr.getmaxyx()[0] - 4
+		##infobar stuff
+		#if self.look['infobar_pos'] == "top":
+			#infobar_pos = 0
+		#else:
+			#infobar_pos = self.stdscr.getmaxyx()[0] - 4
 
-		self.infoBarWindow = curses.newwin(1, self.stdscr.getmaxyx()[1],
-			infobar_pos, 0)
-		self.infoBar = infoBar.infoBar(self.infoBarWindow, self.look)
-		self.infoBar.setString("status", "starting up")
+		#self.infoBarWindow = curses.newwin(1, self.stdscr.getmaxyx()[1],
+			#infobar_pos, 0)
+		#self.infoBar = infoBar.infoBar(self.infoBarWindow, self.look)
+		#self.infoBar.setString("status", "starting up")
 
-		self.headerBar.draw()
-		self.sub.draw()
+		#self.headerBar.draw()
+		#self.sub.draw()
 
-		while True:
-			key = self.stdscr.getkey()
-			self.infoBar.setString("key", "key: " + repr(key))
+		#while True:
+			#key = self.stdscr.getkey()
+			#self.infoBar.setString("key", "key: " + repr(key))
 
-			self.event(key)
+			#self.event(key)
 
 	def resize(self):
 		self.stdscr.refresh()
