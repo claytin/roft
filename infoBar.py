@@ -1,7 +1,7 @@
+import urwid
 
-class infoBar():
-	def __init__(self, _window, _look):
-		self.window = _window
+class infoBar(urwid.WidgetWrap):
+	def __init__(self, _look):
 		self.look = _look
 		self.progress = False
 		self.strings = {}

@@ -1,9 +1,8 @@
+import urwid
 
-class headerBar():
-	def __init__(self, _window, _look, _draw_tab_function):
+class headerBar(urwid.WidgetWrap):
+	def __init__(self, _look):
 		self.look = _look
-		self.window = _window
-		self.drawTab = _draw_tab_function
 		self.curSub = 0
 		self.sublist = []
 

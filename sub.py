@@ -1,16 +1,19 @@
-class sub():
-	def __init__(self, _window, _look, _name):
+import urwid
+
+class sub(urwid.WidgetWrap):
+	def __init__(self, _look, _name):
 		self.name = _name
 		self.curItem = 0
 		self.items = []
 
-		self.window = _window
 		self.look = _look
 
 		self.scroll = 0
 		#create initla pad (will resize later)
 		#self.itemPad = curses.newpad(self.window.getmaxyx()[0],
 		#self.window.getmaxyx()[1])
+
+		urwid.WidgetWrap.__init__(self, self.main_window())
 
 	def moveUp(self):
 		if self.curItem > 0:

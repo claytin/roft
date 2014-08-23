@@ -1,19 +1,11 @@
 import urwid
 
-#ui stuff
-import headerBar
-import infoBar
-import sub
-
 class interface(urwid.Filler):
-	def __init__(self, _look):
-		self.look = _look
-
-	#def run(self):
-		#wrapper(self.init)
-
-	def setup(self):
-		pass
+	def keypress(self, size, key):
+		if key == "enter" or key == "a":
+			pass
+		else:
+			return super().keypress(size, key)
 
 	#set everything up then take input and send it to control
 	#def init(self, _stdscr):
